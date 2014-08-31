@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		
+		<meta charset="utf-8">
+		
+		<script src="jquery.min.js"></script>
+		<script	src="bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+		<script	src="parse.min.js"></script>
+		<script src="add.js"></script>
+		
+		<link href="bootstrap-3.2.0-dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="bootstrap-3.2.0-dist/css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="custom.css" rel="stylesheet">
+		
+		<title> Numismática </title>
+	
+	</head>
+	
+	<body>
+	
+		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		  <div class="container">
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only"> Toggle navigation </span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			  <a class="navbar-brand" href="index.html"> Mi catálogo de monedas </a>
+			</div>
+			<div class="collapse navbar-collapse">
+			  <ul class="nav navbar-nav">
+				<li class="active"><a href="#"> Agregar moneda </a></li>
+				<!--
+				<li><a href="index.html"> Inicio </a></li>
+				<li><a href="#contact">Contact</a></li>
+				-->
+			  </ul>
+			  <form class="navbar-form navbar-right" role="search">
+				<div class="form-group">
+				  <input type="text" class="form-control" placeholder="Buscar">
+				</div>
+				<button type="submit" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-search"></span></button>
+			  </form>
+			</div><!--/.nav-collapse -->
+		  </div>
+		</div>
+		
+		<div class="col-md-4 col-md-offset-4">
+		
+			<h2> Nuevo registro </h2> <br/>
+			
+			<form class="form-horizontal" role="form">
+				
+				<div class="form-group">
+					<label class="col-sm-4 control-label"> País </label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="iCountry">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-4 control-label"> Periodo </label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="iPeriod">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-4 control-label"> Descripción </label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="iDescription">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-4 control-label"> Foto </label>
+					<div class="col-sm-8">
+						<input type="file" accept="image/*" id="iPhoto">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-4 control-label"> Etiquetas </label>
+					<div class="col-sm-8">
+						<textarea id="txtTags"></textarea>
+					</div>
+				</div>
+				
+			</form>
+			
+			<div class="col-sm-offset-4 col-sm-8">
+					<button class="btn btn-sm btn-success" onclick="addCoin()"> Agregar </button>
+					<button class="btn btn-sm btn-success" onclick="test()"> AddTest </button>
+			</div>
+		
+		</div>
+		
+	</body>
+	
+</html>
