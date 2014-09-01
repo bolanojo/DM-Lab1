@@ -41,9 +41,9 @@
 			  </ul>
 			  <form class="navbar-form navbar-right" role="search">
 				<div class="form-group">
-				  <input type="text" class="form-control" placeholder="Buscar">
+				  <input id="sCriteria" type="text" class="form-control" placeholder="Buscar etiqueta">
 				</div>
-				<button type="submit" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-search"></span></button>
+				<button type="button" onClick="search()" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-search"></span></button>
 			  </form>
 			</div><!--/.nav-collapse -->
 		  </div>
@@ -52,8 +52,30 @@
 		<div class="row" id="catalog">
 		
 		
+		</div>
+		
+		<div class="row" id="sResults">
 		
 		
+		</div>
+		
+		<div class="row" id="detail">
+			<div class="col-sm-1 col-sm-offset-11">
+				<button type="button" onClick="displayAll()" class="btn btn-xs btn-success">
+					<span class='glyphicon glyphicon-remove'></span>
+				</button>
+			</div>
+			<div class="col-sm-3 col-sm-offset-3">
+				<img id="dImage"/>
+			</div>
+			<div class="col-sm-4 col-sm-offset-1">
+				<p> País </p> <label class="dStyle" id="dlCountry"></label> <br/> <br/>
+				<p> Periodo de vigencia </p> <label class="dStyle" id="dlPeriod"></label> <br/> <br/>
+				<p> Descripción </p> <label class="dStyle" id="dlDescription"></label> <br/> <br/>
+				<p> Etiquetas </p>
+				<ul id="dlTags">
+				</ul>
+			</div>
 		</div>
 		
 	</body>
