@@ -2,70 +2,58 @@ $(document).ready(function(){
 	Parse.initialize("TcBoKoJoO6aVZyuTxqrEp53LeKM375rNaO0nEKsU", "QIzsOamTCievUP6bjhCO8vQ8dG65kL1HoqEBnsCy");
 });
 
-function test() {
+function assignTags(coine) {
 	var txtArea = document.getElementById("txtTags");
 	var txtContent = txtArea.value.split('\n');
 	
 	for(var i=0; i<txtContent.length; i++) {
-		var description = txtContent[i];
-		
-		var tag = Parse.Object.extend("Tag");
-		var query = new Parse.Query(tag);
-		query.equalTo("description", description);
-		query.find({
-			success: function(tags){
-				if(tags[0] != null){
-					addTag(description);
-				}
-			},
-			error: function(error){
-				alert("Error en recuperación");
-			}
-		});
-		
+		searchTag(coine, txtContent[i].toLowerCase());
 	}
 	
+	txtArea.value = "";
 }
 
-function getTag(description) {
-	var result = null;
+function searchTag(coine, description) {
 	var tag = Parse.Object.extend("Tag");
 	var query = new Parse.Query(tag);
 	
+	query.equalTo("description", description);
+	//alert(description);
 	query.find({
-		success: function(results) {
-			for(var i=0; i<results.length; i++) {
-				var tage = results[i];
-				if(tage.get("description").match(description)){
-					alert(tage.get("description"))
-					return tage;
-					break;
-				}
+		success: function(tags){
+			if(tags.length > 0) {
+				addRelation(coine, tags[0]);
+			}
+			else {
+				addTag(coine, description);
 			}
 		},
 		error: function(error){
-			return null;
+			alert("Error en recuperación");
 		}
 	});
-	
 }
 
-function addTag(description) {
+function addRelation(coine, tage) {
+	var relation = tage.relation("relation");
+	relation.add(coine);
+	tage.save();
+}
+
+function addTag(coine, description) {
 	var tag = Parse.Object.extend("Tag");
 	var tage = new tag();
 	tage.set("description", description);
 	
 	tage.save(null, {
 		success: function(tage){
-			alert("Éxito en creación tag obId "+tage.id+" desc "+description);
-			return tage;
+			//alert("Éxito en creación tag obId "+tage.id+" desc "+description);
+			addRelation(coine, tage);
 		},
 		error: function(tage, error){
 			alert("Error en creación");
-			return null;
 		}
 	});
-	
 }
 
 function addCoin() {
@@ -108,7 +96,7 @@ function addCoin() {
 			
 			coine.save(null, {
 				success: function(coine) {
-					alert("Nuevo registro creado exitosamente obId "+coine.id);
+					assignTags(coine);
 					
 				},
 				error: function(coine, error){
@@ -120,7 +108,6 @@ function addCoin() {
 			iPeriod.value = "";
 			iDescription.value = "";
 			iPhoto.value = "";
-			
 		}
 		else{
 			alert("Falta información");
